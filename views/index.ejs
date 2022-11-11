@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <textarea id="chatbox" cols="30" rows="10"></textarea>
+    <button id="btn-send">Send</button>
+    <div id="chats">
+
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
+    <script>
+        const socket = io()
+
+        socket.on('new msg', msg => {
+            $('#chats').append(msg + '<br>')
+        })
+
+        $(document).ready(() => {
+            $('#btn-send').click(e => {
+                socket.emit('sent msg', $('#chatbox').val())
+            })
+        })
+
+    </script>
+</body>
+</html>
