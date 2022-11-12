@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            color: white;
+            font-family: 'Oxygen', sans-serif;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            background: #212325;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            width: 100%;
+            height: 125px;
+            background: #272a2c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer {
+            width: 100%;
+            height: 125px;
+            background: #272a2c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        .shrink {
+            width: 93%;
+        }
+
+        #chat {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #msg-box {
+            width: 93%;
+            height: 50px;
+            padding: 5px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            background: #212325;
+        }
+
+        #chat ul {
+            height: 93%;
+            width: 93%;
+            list-style: none;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        #chat ul li {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .tag {
+            color: white;
+            border-radius: 5px;
+            padding: 2px 2px 2px 2px;
+            margin: 0 5px 0 0;
+        }
+
+        .author {
+            background: rgb(119, 0, 255);
+        }
+
+        .recip {
+            background: rgb(87, 87, 87);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="shrink">
+            <h1>Person</h1>
+        </div>
+    </header>
+    <section id="chat">
+        <ul>
+            <li><span class="tag author">Me:</span>Hello</li>
+            <li><span class="tag recip">Them:</span>hi..</li>
+            <li><span class="tag author">Me:</span>How are you?</li>
+        </ul>
+    </section>
+    <footer>
+        <input type="text" name="" id="msg-box">
+    </footer>
+</body>
+</html>

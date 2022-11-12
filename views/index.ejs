@@ -7,6 +7,8 @@
     <title>Chat</title>
 </head>
 <body>
+    <a href="/logout">Logout</a>
+    <input type="text" id="recip-id">
     <textarea id="chatbox" cols="30" rows="10"></textarea>
     <button id="btn-send">Send</button>
     <div id="chats">
@@ -17,13 +19,18 @@
     <script>
         const socket = io()
 
-        socket.on('new msg', msg => {
-            $('#chats').append(msg + '<br>')
-        })
+        //socket.on('new msg', msg => {
+        //    $('#chats').append(msg + '<br>')
+        //})
 
         $(document).ready(() => {
             $('#btn-send').click(e => {
-                socket.emit('sent msg', $('#chatbox').val())
+                socket.emit('sent msg', 
+                {
+                    author: '<%= uuid %>', 
+                    recipient: $('#recip-id').val(), 
+                    content: $('#chatbox').val()
+                })
             })
         })
 
