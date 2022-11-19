@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+img {
+    height: 20em;
+    width: 20em;
+    margin: 10px;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: row;
+    
+    width: 100%;
+    height: 100vh;
+
+    background: #ededed;
+}
+
+#side {
+    display: flex;
+    flex-direction: column;
+
+    width: 300px;
+    background: rgb(237,237,237);
+    background: linear-gradient(90deg,rgb(168, 168, 168) 0%, rgba(237,237,237,1) 100%);
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;    
+}
+
+#topbar {
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 80px;
+    border-radius: 35px 0 0 0;
+    background: #8000ff;
+    box-shadow: -2px 0px 5px #aaaaaa;
+}
+
+#name {
+    display: flex;
+    align-items: center;
+    color: white;
+    height: 100vh;
+    margin-left: 50px;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+#chat {
+    min-height: 0;
+    height: calc(100% - 80px);
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    background: #ffffff;
+    box-shadow: 0px 5px 5px #cccccc;
+}
+
+.msg1 {
+    width: 100%;
+}
+
+.msg1 div {
+    font-size: 14px;
+    color: white;
+    background: #8000ff;
+    background: linear-gradient(90deg,#6100cf 0%,#8000ff 100%);
+    margin: 14px;
+    padding: 12px;
+    border-radius: 25px;
+    float: right;
+}
+
+.msg2 {
+    width: 100%;
+}
+
+.msg2 div {
+    font-size: 14px;
+    color: black;
+    background: rgb(233, 232, 232);
+    margin: 14px;
+    padding: 12px;
+    border-radius: 25px;
+    float: left;
+}
+
+
+#bottombar {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 80px;
+    border-radius: 0 0 0 35px;
+    background: #ffffff;
+    border-top: 1px solid #ececec;
+    box-shadow: 0px 5px 5px #cccccc;
+}
+
+#msgtxt {
+    outline: none;
+    border: none;
+    width: 85%;
+    height: 40%;
+    color: black;
+    background: rgb(235, 233, 233);
+    border-radius: 25px;
+    padding: 10px 20px 10px 20px;;
+}
+
+#sendbtn {
+    outline: none;
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50px;
+    background: #8000ff;
+    background: linear-gradient(70deg,#6100cf 0%,#8000ff 100%);
+
+    cursor: pointer;
+
+}
+
+#sendimg {
+    width: 100%;
+    height: 100%;
+    background-size: 40% 40%;
+    background-image: url(./paper-plane.png);
+    background-repeat: no-repeat;
+    background-attachment: inherit;
+    background-position: 45% 50%;
+}
+
+.spacer {
+    width: 1%;
+}

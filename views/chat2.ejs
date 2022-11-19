@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="side"></div>
+        <div id="main">
+            <div id="topbar"><div id="name"><%= recip.username %></div></div>
+            <div id="chat">
+                <% posts.forEach(post => {%>
+                    <% if (post.author == user.uuid) { %>
+                        <div class="msg1"><div><%= post.content %></div></div>
+                    <% } else { %>
+                        <div class="msg2"><div><%= post.content %></div></div>
+                    <% } %>
+                <% }); %>
+            </div>
+            <div id="bottombar">
+                <input type="text" name="msg" id="msgtxt"></input>
+                <div class="spacer"></div>
+                <button id="sendbtn"><div id="sendimg"></div></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

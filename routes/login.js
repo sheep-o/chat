@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
                     req.session.regenerate(err => {
 						if (err) throw err
 
-						req.session.user = {uuid: result[0].uuid, email: req.body.email, username: result[0].username}
+						req.session.user = {uuid: result[0].uuid, email: req.body.email, username: result[0].username, friends: result[0].friends}
 						req.session.save(err => {
 							if (err) throw err
 							res.redirect('/')

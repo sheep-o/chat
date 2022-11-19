@@ -26,7 +26,8 @@ router.post('/', (req, res) => {
             username: req.body.username,
             id: (Math.floor(Math.random() * 9999)).pad(4),
             email: req.body.email,
-            password: hash
+            password: hash,
+            friends: '[]'
         }, 'users', _ => {
             console.log('inserted one row')
             res.redirect('/login')

@@ -5,14 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
+    <style>
+        input {
+            outline: none;
+        }
+
+        .search-box {
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .search-box .results {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .results span {
+        }
+    </style>
 </head>
 <body>
     <a href="/logout">Logout</a>
-    <input type="text" id="recip-id">
-    <textarea id="chatbox" cols="30" rows="10"></textarea>
-    <button id="btn-send">Send</button>
-    <div id="chats">
-
+    <div class="search-box">
+        <input type="text" name="" id="search">
+        <div class="results">
+        </div>
     </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
@@ -24,12 +42,23 @@
         //})
 
         $(document).ready(() => {
-            $('#btn-send').click(e => {
-                socket.emit('sent msg', 
-                {
-                    author: '<%= uuid %>', 
-                    recipient: $('#recip-id').val(), 
-                    content: $('#chatbox').val()
+            $('#search').bind('keyup', e => {
+                fetch('/search/user?name='+$('#search').val())
+                .then(res => {
+                    res.text().then(body => {
+                        const json = JSON.parse(body)
+                        if (json.length == 0) {
+                            $('.results').empty()
+                        } else {
+                            json.forEach(result => {
+                                $('.results').empty()
+                                $('.results').append($(`<li><a href="/chat/${result.uuid}">${result.username}#${result.id}</a></li>`))
+                            })
+                        }
+                    })
+                })
+                .catch(error => {
+                    console.error(error)
                 })
             })
         })

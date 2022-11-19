@@ -22,28 +22,46 @@
         body {
             height: 100%;
             background: #212325;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .sidebar {
+            width: 200px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
         }
 
         header {
             width: 100%;
-            height: 125px;
+            height: 90px;
             background: #272a2c;
             display: flex;
             align-items: center;
             justify-content: center;
             position: fixed;
             top: 0;
+            border-radius: 30px 0 0 0;
         }
 
         footer {
             width: 100%;
-            height: 125px;
+            height: 90px;
             background: #272a2c;
             display: flex;
             align-items: center;
             justify-content: center;
             position: fixed;
             bottom: 0;
+            border-radius: 0 0 0 30px;
         }
 
         h1 {
@@ -75,7 +93,7 @@
 
         #chat ul {
             min-height: 0;
-            height: calc(100% - 275px);
+            height: calc(100% - 210px);
             width: 93%;
             list-style: none;
             display: flex;
@@ -86,7 +104,18 @@
 
         #chat ul li {
             width: 100%;
-            padding: 5px;
+            padding: 5px 0 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #chat ul li:hover {
+            background: #272a2c;
+        }
+
+        .timestamp {
+            font-size: small;
+            color: rgb(184, 184, 184);
         }
 
         .tag {
@@ -103,34 +132,60 @@
         .recip {
             background: rgb(87, 87, 87);
         }
+
+        #sidebar-btn {
+            border: none;
+            width: 20px;
+            height: 50px;
+            background: red;
+            position: fixed;
+            bottom: 50%;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="shrink">
-            <h1><%= recip.username %></h1>
-        </div>
-    </header>
-    <section id="chat">
-        <ul>
-        <% posts.forEach(post => {%>
-            <% if (post.author == user.uuid) { %>
-            <li>
-                <span class="tag author"><%= user.username %></span>
-                <%= post.content %>
-            </li>
-            <% } else { %>
+    <nav class="sidebar">
+        <% JSON.parse(user.friends).forEach(friend => {%>
+            <div><%= friend %></div>
+        <% }) %>
+    </nav>
+    <div class="wrapper">
+        <header>
+            <div class="shrink">
+                <h1><%= recip.username %></h1>
+            </div>
+        </header>
+        <section id="chat">
+            <ul>
+            <% posts.forEach(post => {%>
+                <% if (post.author == user.uuid) { %>
                 <li>
-                    <span class="tag recip"><%= recip.username %></span>
-                    <%= post.content %>
+                    <div>
+                        <span class="tag author"><%= user.username %></span>
+                        <%= post.content %>
+                    </div>
+                    <span class="timestamp">
+                        <%= post.timestamp %>
+                    </span>
                 </li>
-            <% } %>
-        <% }); %>
-        </ul>
-    </section>
-    <footer>
-        <input type="text" name="" id="msg-box" placeholder="Message...">
-    </footer>
+                <% } else { %>
+                    <li>
+                        <div>
+                            <span class="tag recip"><%= recip.username %></span>
+                            <%= post.content %>
+                        </div>
+                        <span class="timestamp">
+                            <%= post.timestamp %>
+                        </span>
+                    </li>
+                <% } %>
+            <% }); %>
+            </ul>
+        </section>
+        <footer>
+            <input type="text" name="" id="msg-box" placeholder="Message...">
+        </footer>
+    </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
     <script>
@@ -153,6 +208,10 @@
                         content: $('#msg-box').val()
                     })
                 }
+            })
+
+            $('#sidebar-btn').click(e => {
+                $('.sidebar').toggle(50)
             })
         })
 
